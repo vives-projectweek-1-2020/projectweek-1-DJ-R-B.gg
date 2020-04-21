@@ -2,31 +2,26 @@
     // message for the user
     $status = false;
     $type = "alert-danger";
-    /*
-        $query = $db->prepare("SELECT password FROM accounts WHERE username = ?");
-        $query->bind_param("i", $_POST["username"]);
-        $query->execute();
 
-        $result = $query->get_result();
-        $row = $query->fetch_assoc();
-    */
     if (isset($_POST["username"]))
     {
         // database connection
-        $db = new mysqli("127.0.0.1", "root", "", "pieter");
+        //$db = new mysqli("127.0.0.1", "root", "", "pieter");
         $username = htmlspecialchars($_POST['username']);
 
         if (isset($_POST["password"])) // login
         {
-            $query = $db->prepare("SELECT password FROM accounts WHERE username = ?");
-            $query->bind_param("s", $_POST['username']);
-            $result = $query->execute();
-
-            if ($result->num_rows > 0)
-            {
-                $row = $result->fetch_assoc();
+            //$query = $db->prepare("SELECT password FROM accounts WHERE username = ?");
+            //$query->bind_param("s", $_POST['username']);
+            //$result = $query->execute();
             
-                if (password_verify($_POST["password"], $row["password"]))
+            $result = DB::connection('mysql')->select("SELECT password FROM accounts WHERE username = ?", [ $_POST["username"] ]);
+
+            if (count($result) > 0)
+            {
+                $row = $result[0];
+            
+                if (password_verify($_POST["password"], $row->password))
                 {
                     $_SESSION["username"] = $username;
                     $status = "Successfully logged in as '$username'!";
@@ -53,16 +48,18 @@
                 $password = password_hash($_POST["password1"], PASSWORD_DEFAULT);
                 $rank = 0;
 
-                $query = $db->prepare("INSERT INTO accounts (username, password, rank) VALUES (?, ?, ?)");
-                $query->bind_param("ssi", $_POST['username'], $password, $rank);
-                $query->execute();
+                //$query = $db->prepare("INSERT INTO accounts (username, password, rank) VALUES (?, ?, ?)");
+                //$query->bind_param("ssi", $_POST['username'], $password, $rank);
+                //$query->execute();
+
+                DB::connection('mysql')->insert("INSERT INTO accounts (username, password, rank) VALUES (?, ?, ?)", [ $_POST["username"], $password, $rank ]);
 
                 $status = "Successfully registered '$username'";
                 $type = "alert-success";
             }
         }
 
-        $db->close();
+        // $db->close();
     }
 ?>
 <!doctype html>
@@ -74,9 +71,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
 
-    <link href="css/styles.css" type="text/css" rel="stylesheet" />
-    <script src="js/app.js"></script>
+    <link href="{{ asset('css/styles.css') }}" type="text/css" rel="stylesheet" />
+    <script src="{{ asset('js/app.js') }}"></script>
     <title>Login testing</title>
   </head>
   <body>
@@ -86,7 +84,8 @@
         </div>
     <?php } ?>
     <button onclick="showPopupLogin()" class="btn btn-outline-success">Login</button>
-    <form id="logincontainer" method="POST" action="login.php">
+    <form id="logincontainer" method="POST" action="/login">
+        @csrf
         <div class="popup">
             <div class="title">
                 Login
@@ -111,7 +110,8 @@
 
     
     <button onclick="showPopupRegister()" class="btn btn-outline-success">Register</button>
-    <form id="registercontainer" method="POST" action="login.php">
+    <form id="registercontainer" method="POST" action="/login">
+        @csrf
         <div class="popup">
             <div class="title">
                 Register

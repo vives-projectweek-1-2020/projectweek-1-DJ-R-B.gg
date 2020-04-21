@@ -4,21 +4,27 @@ body {
     font-style: italic;
 } 
 header {
-    color:#484aa3;
-    text-align:center; 
+    color:darkblue;
+    text-align:center;
+    text-decoration: underline; 
 }
 .welcome {
-    position:center;
+    position: relative;;
     text-align: center;
-    margin: 0 auto;   
+    margin: 0 auto;    
 }
 div.login{
     text-align: center;
     width: 5px;
+    background-color: cornsilk;
+    border-style: solid;  
+    padding: 15px 25px;
 }
 div.register{
     text-align: center;
     width: 5px;
+    background-color: cornsilk;
+    border-style: solid;
 }
 .choices {
     position: center;
@@ -43,9 +49,11 @@ div.geschiedenis {
 }
 .upload{
     text-align: center;
+    position: relative;
 }
 div.files{
     text-align: center ;
     cursor: pointer;
-    padding: 50px;
+    bottom: 50px;
+    border-radius: 12px;
 }

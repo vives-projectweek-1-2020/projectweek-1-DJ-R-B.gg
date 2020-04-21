@@ -1,0 +1,51 @@
+body { 
+    background-color :#eeebe3;
+    font-size: 50px;
+    font-style: italic;
+} 
+header {
+    color:#484aa3;
+    text-align:center; 
+}
+.welcome {
+    position:center;
+    text-align: center;
+    margin: 0 auto;   
+}
+div.login{
+    text-align: center;
+    width: 5px;
+}
+div.register{
+    text-align: center;
+    width: 5px;
+}
+.choices {
+    position: center;
+    text-align: center;
+    top: 50px;
+    margin-top: 30px;
+}
+div.talen {
+    text-align: center;
+    width: 5px;
+    cursor: pointer;
+}
+div.wiskunde { 
+    text-align: justify;
+    width: 5px;
+    cursor: pointer;
+}
+div.geschiedenis {
+    text-align: center;
+    width: 5px;
+    cursor: pointer;
+}
+.upload{
+    text-align: center;
+}
+div.files{
+    text-align: center ;
+    cursor: pointer;
+    padding: 50px;
+}

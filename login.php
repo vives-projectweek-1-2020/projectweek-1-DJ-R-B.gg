@@ -2,23 +2,31 @@
     // message for the user
     $status = false;
     $type = "alert-danger";
+    /*
+        $query = $db->prepare("SELECT password FROM accounts WHERE username = ?");
+        $query->bind_param("i", $_POST["username"]);
+        $query->execute();
 
+        $result = $query->get_result();
+        $row = $query->fetch_assoc();
+    */
     if (isset($_POST["username"]))
     {
         // database connection
         $db = new mysqli("127.0.0.1", "root", "", "pieter");
-        $username = $db->real_escape_string($_POST["username"]);
+        $username = htmlspecialchars($_POST['username']);
 
         if (isset($_POST["password"])) // login
         {
-            $input = $db->real_escape_string($_POST["password"]);
+            $query = $db->prepare("SELECT password FROM accounts WHERE username = ?");
+            $query->bind_param("s", $_POST['username']);
+            $result = $query->execute();
 
-            $result = $db->query("SELECT password FROM accounts WHERE username='$username'");
             if ($result->num_rows > 0)
             {
                 $row = $result->fetch_assoc();
             
-                if (password_verify($input, $row["password"]))
+                if (password_verify($_POST["password"], $row["password"]))
                 {
                     $_SESSION["username"] = $username;
                     $status = "Successfully logged in as '$username'!";
@@ -42,12 +50,13 @@
             }
             else
             {
-                $plain_password = $db->real_escape_string($_POST["password1"]);
-
-                $password = password_hash($plain_password, PASSWORD_DEFAULT);
+                $password = password_hash($_POST["password1"], PASSWORD_DEFAULT);
                 $rank = 0;
 
-                $db->query("INSERT INTO accounts (username, password, rank) VALUES ('$username', '$password', '$rank')");
+                $query = $db->prepare("INSERT INTO accounts (username, password, rank) VALUES (?, ?, ?)");
+                $query->bind_param("ssi", $_POST['username'], $password, $rank);
+                $query->execute();
+
                 $status = "Successfully registered '$username'";
                 $type = "alert-success";
             }
@@ -148,32 +157,32 @@ button{
 
     
     <button onclick="showPopup()" class="btn btn-outline-success">Register</button>
-    <div id="logincontainer">
+    <form id="logincontainer" method="POST" action="login.php">
         <div class="popup">
-            <div class="title">Register<i class="material-icons close" onclick="cancel()">X</i></div>
+            <div class="title">
+                Register
+                <button class="btn btn-primary" onclick="cancel()">X</button>
+            </div>
             <div id="register">
-        <form method="POST" action="login.php">
-            <div class="form-group">
-                <label for="username1">Username</label>
-                <input type="text" name="username" id="username1" placeholder="Your name" />
+                <div class="form-group">
+                    <label for="username1">Username</label>
+                    <input type="text" name="username" id="username1" placeholder="Your name" />
+                </div>
+                <div class="form-group">
+                    <label for="password4">Password</label>
+                    <input type="password" name="password1" id="password4" placeholder="Password" />
+                </div>
+                <div class="form-group">
+                    <label for="password5">Repeat</label>
+                    <input type="password" name="password2" id="password5" placeholder="Password" />
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password4">Password</label>
-                <input type="password" name="password1" id="password4" placeholder="Password" />
-            </div>
-            <div class="form-group">
-                <label for="password5">Repeat</label>
-                <input type="password" name="password2" id="password5" placeholder="Password" />
-            </div>
-            
-        </form>
-    </div>
             <div class="actions">
                 <input type="submit" class="btn btn-outline-success" value="Register" />
                 <button class="btn btn-outline-success" onclick="cancel()">cancel</button>
             </div>
         </div>
-    </div>
+    </form>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

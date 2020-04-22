@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
- 
-  
+<body class="p-3 mb-2 bg-gradient-light text-dark">
+
+    <header>Welkom, upload je taken hier.</header>
 	<div class="welcome">
-        <header>Welkom, upload je taken hier.</header>
+       
         <input type="button" class="btn btn-secondary" value="Login Hier"/> 
         <input type="button" class="btn btn-register btn-sm" onclick="select('register')">Registreer hier </input>
              
@@ -25,7 +25,7 @@
     </div>
     
     <div class="upload">
-      <button  type="button" class="btn btn-info btn-lg">Plaats je files hier om ze te uploaden.</button>
+      <input type="button" class="btn btn-info btn-lg" value="Plaats je files hier om ze te uploaden."/>
     </div>
 </body>
 </html>

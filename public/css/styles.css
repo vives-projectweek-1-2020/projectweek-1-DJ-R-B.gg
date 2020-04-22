@@ -12,51 +12,15 @@ header {
 .welcome {
     position: relative;;
     text-align: center;
-    margin: 0 auto;    
-}
-div.login{
-    text-align: center;
-    width: 5px;
-    background-color: cornsilk;
-    border-style: solid;  
-    padding: 15px 25px;
-}
-div.register{
-    text-align: center;
-    width: 5px;
-    background-color: cornsilk;
-    border-style: solid;
+       
 }
 .choices {
     position: center;
     text-align: center;
-    padding: 10px;
+    padding-top: 40px;
 }
-div.talen {
-    text-align: center;
-    width: 5px;
-    cursor: pointer;
-    background-color: cornsilk;
-}
-div.wiskunde { 
-    text-align: justify;
-    width: 5px;
-    cursor: pointer;
-    background-color: cornsilk;
-}
-div.geschiedenis {
-    text-align: center;
-    width: 5px;
-    cursor: pointer;
-    background-color: cornsilk
-}
+
 .upload{
     text-align: center;
-}
-div.files{
-    text-align: center ;
-    cursor: pointer;
-    bottom: 50px;
-    border-radius: 12px;
-    background-color: cornsilk;
+    padding-top: 80px;
 }

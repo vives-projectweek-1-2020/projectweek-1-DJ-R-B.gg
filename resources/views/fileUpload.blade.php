@@ -18,12 +18,12 @@
         {
             if($fileError === 0){
                 if($fileSize < 500000){
-                    $fileNameNew = uniqid('', true).".".$fileActualExt;
+                    $fileNameNew = uniqid('', true).".".$fileActualExt; 
                     $fileDestination = public_path('upload/').$fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
                     header("Location: index.php?uploadsuccess");
                     $name = "jens";
-                    $userId = DB::connection('mysql')->insert("SELECT id FROM accounts WHERE username ="jens"");
+                    $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username ='jens'");
                     DB::connection('mysql')->insert("INSERT INTO fileupload (user_id, path) VALUES (?, ?)", [$userId ,$fileDestination]);
                 }else{
                     echo "your file is to big";

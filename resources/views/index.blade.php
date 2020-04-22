@@ -10,24 +10,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-  <div class="p-3 mb-2 bg-light text-dark">
+ 
   
 	<div class="welcome">
         <header>Welkom, upload je taken hier.</header>
-        <input type="button" class="btn btn-secondary" value="Login Hier" /> 
+        <input type="button" class="btn btn-secondary" value="Login Hier"/> 
         <input type="button" class="btn btn-register btn-sm" onclick="select('register')">Registreer hier </input>
              
     </div>
     <div class="choices">
-        <input type="button" class="btn btn-primary" value="Talen" />
-        <input type="button" class="btn btn-primary" value="Wiskunde" />
-        <input type="button" class="btn btn-primary" value="Geschiedenis" />
+        <input type="button" class="btn btn-primary" value="Talen"/>
+        <input type="button" class="btn btn-danger" value="Wiskunde"/>
+        <input type="button" class="btn btn-warning" value="Geschiedenis"/>
     </div>
     
     <div class="upload">
-      <button  type="button" class="btn btn-files btn-lg btn-block" >Plaats je files hier om ze te uploaden.</button>
+      <button  type="button" class="btn btn-info btn-lg">Plaats je files hier om ze te uploaden.</button>
     </div>
-  </div>
 </body>
 </html>
 

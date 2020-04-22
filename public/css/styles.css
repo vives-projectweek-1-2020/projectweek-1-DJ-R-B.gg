@@ -1,12 +1,13 @@
-body { 
-    background-color :#eeebe3;
-    font-size: 50px;
+html { 
+    background-color: whitesmoke;
+    font-size: 25px;
     font-style: italic;
 } 
 header {
     color:darkblue;
     text-align:center;
-    text-decoration: underline; 
+    text-decoration: underline;
+    padding: 10px; 
 }
 .welcome {
     position: relative;;
@@ -29,8 +30,7 @@ div.register{
 .choices {
     position: center;
     text-align: center;
-    top: 50px;
-    margin-top: 30px;
+    padding: 10px;
 }
 div.talen {
     text-align: center;
@@ -52,7 +52,6 @@ div.geschiedenis {
 }
 .upload{
     text-align: center;
-    position: relative;
 }
 div.files{
     text-align: center ;
@@ -60,7 +59,4 @@ div.files{
     bottom: 50px;
     border-radius: 12px;
     background-color: cornsilk;
-}
-.button{
-    background-color: cyan;
 }

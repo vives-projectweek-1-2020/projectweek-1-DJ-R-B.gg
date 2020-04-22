@@ -21,8 +21,14 @@ Route::get('/login', function () {
     return view('login');
 });
 
-
 Route::post('/login', function () {
     return view('login');
 });
 
+Route::get('/file', function () {
+    return view('fileUpload');
+});
+
+Route::post('/file_upload', function () {
+    return view('fileUpload');
+});

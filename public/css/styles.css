@@ -1,66 +1,65 @@
-html {
-    font-family: sans-serif;
-    background-color: #fefefe;
+body { 
+    background-color :#eeebe3;
+    font-size: 50px;
+    font-style: italic;
+} 
+header {
+    color:darkblue;
+    text-align:center;
+    text-decoration: underline; 
 }
-body {
-    height: 100%;
-    position: fixed;
-    width: 100%;
+.welcome {
+    position: relative;;
+    text-align: center;
+    margin: 0 auto;    
 }
-#logincontainer {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: none;
+div.login{
+    text-align: center;
+    width: 5px;
+    background-color: cornsilk;
+    border-style: solid;  
+    padding: 15px 25px;
 }
-
-#registercontainer {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: none;
+div.register{
+    text-align: center;
+    width: 5px;
+    background-color: cornsilk;
+    border-style: solid;
 }
-
-.popup {
-    min-height: 800px;
-    width: 80%;
-    max-width: 700px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.choices {
+    position: center;
+    text-align: center;
+    top: 50px;
+    margin-top: 30px;
 }
-.popup .title {
-    background-color: rgb(34, 34, 34);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    color: white;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.popup .actions {
-    background-color: #eeeeee;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
-    padding: 16px 24px;
-}
-
-button{
-    margin: 10px 10px;
-}
-
-.close {
+div.talen {
+    text-align: center;
+    width: 5px;
     cursor: pointer;
+    background-color: cornsilk;
+}
+div.wiskunde { 
+    text-align: justify;
+    width: 5px;
+    cursor: pointer;
+    background-color: cornsilk;
+}
+div.geschiedenis {
+    text-align: center;
+    width: 5px;
+    cursor: pointer;
+    background-color: cornsilk
+}
+.upload{
+    text-align: center;
+}
+div.files{
+    text-align: center ;
+    cursor: pointer;
+    bottom: 50px;
+    border-radius: 12px;
+    background-color: cornsilk;
+}
+.button{
+    background-color: cyan;
 }

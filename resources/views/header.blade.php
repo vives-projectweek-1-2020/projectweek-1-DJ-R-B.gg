@@ -103,8 +103,8 @@
                         <p>Welcome <?= $_SESSION["username"] ?></p>
                     </form>
                 <?php } else { ?>
-                    <button onclick="showPopupLogin()" class="btn btn-outline-success">Login</button>
-                    <button onclick="showPopupRegister()" class="btn btn-outline-success">Register</button>
+                    <button data-toggle="modal" data-target="#logincontainer" class="btn btn-outline-success">Login</button>
+                    <button data-toggle="modal" data-target="#registercontainer" class="btn btn-outline-success">Register</button>
                 <?php } ?>
                 
                 </div>
@@ -122,54 +122,62 @@
 </div>
 
 <!-- LOGIN GEDEELTE -->
-<form id="logincontainer" method="POST" action="/">
+<form class="modal fade" id="logincontainer" tabindex="-1" role="dialog" aria-hidden="true" method="POST" action="/">
     @csrf
-    <div class="popup">
-        <div class="title">
-            Login
-            <input type="button" class="btn btn-danger" value="X" onclick="cancelLogin()"/>
-        </div>
-        <div id="login">
-            <div class="form-group">
-                <label for="username1">Username</label>
-                <input type="text" name="username" id="username1" placeholder="Your name" minlength="3" required="true" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-group">
-                <label for="password3">Password</label>
-                <input type="password" name="password" id="password3" placeholder="Password" minlength="6" required="true" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$" />
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="username1">Username</label>
+                    <input type="text" name="username" id="username1" placeholder="Your name" minlength="3" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="password3">Password</label>
+                    <input type="password" name="password" id="password3" placeholder="Password" minlength="6" required="true" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$" />
+                </div>
             </div>
-        </div>
-        <div class="actions">
-            <input type="submit" class="btn btn-outline-success" value="Login" />
-            <input type="button" class="btn btn-outline-danger" value="Cancel" onclick="cancelLogin()" />
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-success" onclick="">Login</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
     </div>
 </form>
 
-<form id="registercontainer" method="POST" action="/">
+<form class="modal fade" id="registercontainer" tabindex="-1" role="dialog" aria-hidden="true" method="POST" action="/">
     @csrf
-    <div class="popup">
-        <div class="title">
-            Register
-            <input type="button" class="btn btn-danger" value="X" onclick="cancelRegister()"/>
-        </div>
-        <div id="register">
-            <div class="form-group">
-                <label for="username2">Username</label>
-                <input type="text" name="username" id="username2" placeholder="Your name" minlength="3" required="true" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-group">
-                <label for="password4">Password</label>
-                <input type="password" name="password1" id="password4" placeholder="Password" minlength="6" required="true" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$" />
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="username2">Username</label>
+                    <input type="text" name="username" id="username2" placeholder="Your name" minlength="3" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="password4">Password</label>
+                    <input type="password" name="password1" id="password4" placeholder="Password" minlength="6" required="true" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$" />
+                </div>
+                <div class="form-group">
+                    <label for="password5">Repeat</label>
+                    <input type="password" name="password2" id="password5" placeholder="Password" minlength="6" required="true" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$" />
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password5">Repeat</label>
-                <input type="password" name="password2" id="password5" placeholder="Password" minlength="6" required="true" pattern="^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$" />
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-success" onclick="">Register</button>
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div>
-        <div class="actions">
-            <input type="submit" class="btn btn-outline-success" value="Register" />
-            <input type="button" class="btn btn-outline-danger" value="Cancel" onclick="cancelRegister()" />
         </div>
     </div>
 </form>

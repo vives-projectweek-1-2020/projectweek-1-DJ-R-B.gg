@@ -7,6 +7,16 @@ body {
     position: fixed;
     width: 100%;
 }
+#carousel {
+    z-index: -1;
+}
+#status {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.inline {
+    display: inline;
+}
 #logincontainer {
     height: 100%;
     width: 100%;

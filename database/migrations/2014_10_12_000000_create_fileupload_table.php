@@ -17,10 +17,10 @@ class CreateFileuploadTable extends Migration
             $table->id()->unique();
             $table->foreignId('user_id');
             $table->string('path');
-            $table->string('username');
-            $table->string('comment');
-            $table->string('category');
-            $table->timestamps();
+            $table->string('title');
+            $table->string('comment')->nullabe(); //set this in http://localhost/phpmyadmin/tbl_structure.php?db=grademe&table=fileupload to default 0
+            $table->set('category', ['wiskunde', 'taal', 'geschiedenis']);
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

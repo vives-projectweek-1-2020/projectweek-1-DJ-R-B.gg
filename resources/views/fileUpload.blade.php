@@ -19,14 +19,14 @@
         {
             if($fileError === 0){
                 if($fileSize < 500000){
-                    $folderNameNew = uniqid('', true);
                     $fileNameNew = uniqid('', true).".".$fileActualExt; 
-                    mkdir(public_path('upload/').$folderNameNew,0777);
-                    $fileDestination = public_path('upload/').$folderNameNew.'/'.$fileNameNew;
+                    $fileDestination = public_path('upload/').$fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
                     header("Location: index.php?uploadsuccess");
                     $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);
-                    DB::connection('mysql')->insert("INSERT INTO fileupload (user_id, path) VALUES (?, ?)", [ $userId[0]->id, $fileDestination ]);
+                    DB::connection('mysql')->insert("INSERT INTO issues (user_id, title, category) VALUES (?, ?, ?)", [ $userId[0]->id, isset($_POST["title"]), isset($_POST["category"])]);
+                    $issueId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);
+                    DB::connection('mysql')->insert("INSERT INTO files (issue_id, name ) VALUES (?, ?)", [ $issueId[0]->id, $fileNameNew]);
                 }else{
                     echo "your file is to big";
                 }
@@ -50,6 +50,8 @@
 <form action="file_upload" method="POST" enctype="multipart/form-data">@csrf
 <input type ="file" name="file">
 <button type="submit" name="submit" value="submit">UPLOAD FILE</button>
+<input type="text" name="title" id="title2" placeholder="title" minlength="3" required="true" />
+<input type="text" name="category" id="category2" placeholder="category" minlength="3" required="true" />
 </form>
 
 </body>

@@ -19,8 +19,10 @@
         {
             if($fileError === 0){
                 if($fileSize < 500000){
+                    $folderNameNew = uniqid('', true);
                     $fileNameNew = uniqid('', true).".".$fileActualExt; 
-                    $fileDestination = public_path('upload/').$fileNameNew;
+                    mkdir(public_path('upload/').$folderNameNew,0777);
+                    $fileDestination = public_path('upload/').$folderNameNew.'/'.$fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
                     header("Location: index.php?uploadsuccess");
                     $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);

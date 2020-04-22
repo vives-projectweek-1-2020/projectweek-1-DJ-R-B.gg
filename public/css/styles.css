@@ -28,9 +28,7 @@ header {
 
 .upload{
     text-align: center;
-<<<<<<< HEAD
     padding-top: 80px;
-=======
 }
 div.files{
     text-align: center ;
@@ -41,5 +39,4 @@ div.files{
 }
 .button{
     background-color: cyan;
->>>>>>> b6a9ecc8be80077475d583f51005a39469bca152
 }

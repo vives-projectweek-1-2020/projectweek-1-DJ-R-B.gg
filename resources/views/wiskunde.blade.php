@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Grademe</title>
-    <meta name= "author" content="Brent Schaepdrijver, Dieter Dewachter">
+    <meta name= "author" content="Brent Schaepdrijver">
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -15,18 +15,11 @@
     @include('header')
 
     <div class="main">
-        <div class="welcome">
-            <header>Welkom, upload je taken hier.</header>
-        </div>
-
-        <div class="choices">
-            <button type="button" class="btn btn-outline-success" onclick="select('talen')">Talen </button>
-            <button type="button" class="btn btn-outline-success" onclick="select('wiskunde')">Wiskunde </button>
-            <button type="button" class="btn btn-outline-success" onclick="select('geschiedenis')">Geschiedenis</button>
-        </div>
         
         <div class="upload">
-        <input type="button" class="btn btn-outline-success" onclick="select('files')" value="Selecteer files om te uploaden"></button>
+        
+            <input type="button" class="btn btn-outline-success" value="Upload hier je wiskunde taak." />      
+        
         </div>
     </div>
 </body>

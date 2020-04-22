@@ -1,8 +1,9 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <?php
     if(isset($_POST['submit'])){
         $result = DB::connection('mysql')->select("SELECT password FROM accounts");
-        print_r($result);
+        print_r($result[0]);
         $file = $_FILES['file'];
         $fileName = $_FILES['file']['name'];
         $fileTmpName = $_FILES['file']['tmp_name'];
@@ -23,8 +24,8 @@
                     move_uploaded_file($fileTmpName, $fileDestination);
                     header("Location: index.php?uploadsuccess");
                     $name = "jens";
-                    $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username ='jens'");
-                    DB::connection('mysql')->insert("INSERT INTO fileupload (user_id, path) VALUES (?, ?)", [$userId ,$fileDestination]);
+                    $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);
+                    DB::connection('mysql')->insert("INSERT INTO fileupload (user_id, path) VALUES (?, ?)", [ $userId[0]->id, $fileDestination ]);
                 }else{
                     echo "your file is to big";
                 }
@@ -49,5 +50,6 @@
 <input type ="file" name="file">
 <button type="submit" name="submit" value="submit">UPLOAD FILE</button>
 </form>
+
 </body>
 </html>

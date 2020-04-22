@@ -30,49 +30,81 @@
         </div>
     </div>
 
-
 <!-- TRYING SOMETHING -->
 <div class="HomePage container">
+<?php
+$result = DB::connection('mysql')->select("SELECT id, category, title, comment, timestamp FROM fileupload ORDER BY timestamp DESC");
+for($i=0; $i < count($result); $i++) { 
+  $id = $result[$i]->id;  ?>
   <div class="card text-center">
     <div class="card-header">
-      Featured
+      <?= $result[$i]->category ?>
     </div>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title">
+        <?= $result[$i]->title ?>
+      </h5>
+      <p class="card-text">
+        <?= $result[$i]->comment ?>
+      </p>
+      <p>
+        <img src="{{ asset('upload/5ea04a9f4308f8.46219301.jpg') }}" class="card-text"/>
+      </p>
+      <a href="#" class="btn btn-primary">Help this kid</a>
     </div>
     <div class="card-footer text-muted">
-      2 days ago
+      <?php
+        $difference = time() - strtotime($result[$i]->timestamp);
+        $days_left = abs(round($difference / 86400)); // 86400 = seconds per day
+        echo "$days_left day(s) ago";
+      ?>
+    </div>
+  </div>
+<?php
+}
+?>
+
+<!-- <div class="HomePage container">
+  <div class="card text-center">
+    <div class="card-header">
+      Wiskunde
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Can you please help me solve this thing</h5>
+      <img src="public\upload\5ea04a9f4308f8.46219301.jpg" class="card-text"/>
+      <a href="#" class="btn btn-primary">Help this kid</a>
+    </div>
+    <div class="card-footer text-muted">
+      1 day ago
+    </div>
+  </div>
+  <div class="card text-center">
+    <div class="card-header">
+      Taal
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Can you please help me solve this thing</h5>
+      <img src="public\upload\5ea04a9f4308f8.46219301.jpg" class="card-text"/>
+      <a href="#" class="btn btn-primary">Help this kid</a>
+    </div>
+    <div class="card-footer text-muted">
+      1 day ago
     </div>
   </div>
 
   <div class="card text-center">
     <div class="card-header">
-      Featured
+      Geschiedenis
     </div>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title">Can you please help me solve this thing</h5>
+      <img src="public\upload\5ea04a9f4308f8.46219301.jpg" class="card-text"/>
+      <a href="#" class="btn btn-primary">Help this kid</a>
     </div>
     <div class="card-footer text-muted">
-      2 days ago
+      1 day ago
     </div>
-  </div>
-  <div class="card text-center">
-    <div class="card-header">
-      Featured
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    <div class="card-footer text-muted">
-      2 days ago
-    </div>
-  </div>
+  </div> -->
 </div>
 
 </body>

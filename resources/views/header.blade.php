@@ -91,20 +91,20 @@
             </div>
             <div class="carousel-caption">
                 <h3 class="h3-responsive">Grademe</h3>
-                <input type="button" class="btn btn-outline-success" value="Home" onclick="window.location.href='/';" />
-                <button type="button" class="btn btn-outline-success">Talen </button>
-                <button type="button" class="btn btn-outline-success">Wiskunde </button>
-                <button type="button" class="btn btn-outline-success">Geschiedenis</button>
+                <input type="button" class="btn btn btn-secondary" value="Home" onclick="window.location.href='/';" />
+                <button type="button" class="btn btn-secondary">Talen </button>
+                <button type="button" class="btn btn-secondary">Wiskunde </button>
+                <button type="button" class="btn btn-secondary">Geschiedenis</button>
                 <?php if (isset($_SESSION["username"]) && $_SESSION["username"]) { ?>
                     <form method="POST" action="/" class="inline">
                         @csrf
                         <input type="hidden" name="logout" value="true" />
-                        <input type="submit" value="Logout" class="btn btn-outline-danger" />
+                        <input type="submit" value="Logout" class="btn btn-danger" />
                         <p>Welcome <?= $_SESSION["username"] ?></p>
                     </form>
                 <?php } else { ?>
-                    <button data-toggle="modal" data-target="#logincontainer" class="btn btn-outline-success">Login</button>
-                    <button data-toggle="modal" data-target="#registercontainer" class="btn btn-outline-success">Register</button>
+                    <button data-toggle="modal" data-target="#logincontainer" class="btn btn-primary">Login</button>
+                    <button data-toggle="modal" data-target="#registercontainer" class="btn btn-primary">Register</button>
                 <?php } ?>
                 
                 </div>

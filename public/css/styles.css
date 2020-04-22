@@ -1,14 +1,12 @@
-html { 
-    
-    font-size: 25px;
+body { 
+    background-color :#eeebe3;
+    font-size: 50px;
     font-style: italic;
 }
 header {
     color:darkblue;
     text-align:center;
-    text-decoration: underline;
-    padding: 10px; 
-    font-size:xx-large;
+    text-decoration: underline; 
 }
 .main {
     position: relative;
@@ -17,18 +15,46 @@ header {
 .welcome {
     position: relative;;
     text-align: center;
-    padding-top: 30px;
-       
+    margin: 0 auto;    
+}
+div.login{
+    text-align: center;
+    width: 5px;
+    background-color: cornsilk;
+    border-style: solid;  
+    padding: 15px 25px;
+}
+div.register{
+    text-align: center;
+    width: 5px;
+    background-color: cornsilk;
+    border-style: solid;
 }
 .choices {
     position: center;
     text-align: center;
-    padding-top: 40px;
+    top: 50px;
+    margin-top: 30px;
 }
-
+div.talen {
+    text-align: center;
+    width: 5px;
+    cursor: pointer;
+    background-color: cornsilk;
+}
+div.wiskunde { 
+    text-align: justify;
+    width: 5px;
+    cursor: pointer;
+    background-color: cornsilk;
+}
+div.geschiedenis {
+    text-align: center;
+    width: 5px;
+    cursor: pointer;
+    background-color: cornsilkgit 
 .upload{
     text-align: center;
-    padding-top: 80px;
 }
 div.files{
     text-align: center ;

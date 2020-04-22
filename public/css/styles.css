@@ -1,66 +1,28 @@
-html {
-    font-family: sans-serif;
-    background-color: #fefefe;
+html { 
+    
+    font-size: 25px;
+    font-style: italic;
+} 
+header {
+    color:darkblue;
+    text-align:center;
+    text-decoration: underline;
+    padding: 10px; 
+    font-size:xx-large;
 }
-body {
-    height: 100%;
-    position: fixed;
-    width: 100%;
+.welcome {
+    position: relative;;
+    text-align: center;
+    padding-top: 30px;
+       
 }
-#logincontainer {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: none;
-}
-
-#registercontainer {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: none;
+.choices {
+    position: center;
+    text-align: center;
+    padding-top: 40px;
 }
 
-.popup {
-    min-height: 800px;
-    width: 80%;
-    max-width: 700px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.popup .title {
-    background-color: rgb(34, 34, 34);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    color: white;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.popup .actions {
-    background-color: #eeeeee;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    display: flex;
-    justify-content: flex-end;
-    align-content: center;
-    padding: 16px 24px;
-}
-
-button{
-    margin: 10px 10px;
-}
-
-.close {
-    cursor: pointer;
+.upload{
+    text-align: center;
+    padding-top: 80px;
 }

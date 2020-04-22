@@ -18,6 +18,12 @@
         <div class="welcome">
             <header>Welkom, upload je taken hier.</header>
         </div>
+
+        <div class="choices">
+            <button type="button" class="btn btn-outline-success" onclick="select('talen')">Talen </button>
+            <button type="button" class="btn btn-outline-success" onclick="select('wiskunde')">Wiskunde </button>
+            <button type="button" class="btn btn-outline-success" onclick="select('geschiedenis')">Geschiedenis</button>
+        </div>
         
         <div class="upload">
         <input type="button" class="btn btn-outline-success" onclick="select('files')" value="Selecteer files om te uploaden"></button>
@@ -72,7 +78,6 @@ for($i=0; $i < count($result); $i++) {
       1 day ago
     </div>
   </div>
-
   <div class="card text-center">
     <div class="card-header">
       Taal

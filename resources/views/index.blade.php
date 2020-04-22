@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,17 +19,58 @@
         <div class="welcome">
             <header>Welkom, upload je taken hier.</header>
         </div>
-
-        <div class="choices">
-            <button type="button" class="talen" onclick="select('talen')">Talen </button>
-            <button type="button" class="wiskunde" onclick="select('wiskunde')">Wiskunde </button>
-            <button type="button" class="geschiedenis" onclick="select('geschiedenis')">Geschiedenis</button>
-        </div>
         
         <div class="upload">
         <input type="button" class="btn btn-outline-success" onclick="select('files')" value="Selecteer files om te uploaden"></button>
         </div>
     </div>
+
+
+<!-- TRYING SOMETHING -->
+<div class="HomePage container">
+  <div class="card text-center">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
+  </div>
+
+  <div class="card text-center">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
+  </div>
+
+  <div class="card text-center">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
 

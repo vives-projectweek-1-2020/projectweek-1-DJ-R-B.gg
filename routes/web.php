@@ -30,3 +30,12 @@ Route::post('/login', function () {
     return view('login');
 });
 
+Route::get('/file', function () {
+    return view('file');
+});
+
+
+Route::post('/file', function () {
+    return view('file');
+});
+

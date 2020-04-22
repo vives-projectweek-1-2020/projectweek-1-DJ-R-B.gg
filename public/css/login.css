@@ -2,13 +2,8 @@ html {
     font-family: sans-serif;
     background-color: #fefefe;
 }
-body {
-    height: 100%;
-    position: fixed;
-    width: 100%;
-}
 #carousel {
-    z-index: -1;
+    z-index: 0;
 }
 #status {
     margin-bottom: 0;
@@ -38,14 +33,15 @@ body {
 }
 
 .popup {
-    min-height: 800px;
-    width: 80%;
-    max-width: 700px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 50%;
+    position: relative;
+    z-index: 2;
+    margin: auto;
 }
+.HomePage{
+    z-index: -1;
+}
+
 .popup .title {
     background-color: rgb(34, 34, 34);
     border-top-left-radius: 5px;

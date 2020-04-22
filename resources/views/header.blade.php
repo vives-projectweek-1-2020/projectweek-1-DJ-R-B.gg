@@ -91,17 +91,22 @@
             </div>
             <div class="carousel-caption">
                 <h3 class="h3-responsive">Grademe</h3>
-                <input type="button" class="btn btn-outline-success" value="Home"/>
+                <input type="button" class="btn btn-outline-success" value="Home" onclick="window.location.href='/';" />
+                <button type="button" class="btn btn-outline-success">Talen </button>
+                <button type="button" class="btn btn-outline-success">Wiskunde </button>
+                <button type="button" class="btn btn-outline-success">Geschiedenis</button>
                 <?php if (isset($_SESSION["username"]) && $_SESSION["username"]) { ?>
                     <form method="POST" action="/" class="inline">
                         @csrf
                         <input type="hidden" name="logout" value="true" />
                         <input type="submit" value="Logout" class="btn btn-outline-danger" />
+                        <p>Welcome <?= $_SESSION["username"] ?></p>
                     </form>
                 <?php } else { ?>
                     <button onclick="showPopupLogin()" class="btn btn-outline-success">Login</button>
                     <button onclick="showPopupRegister()" class="btn btn-outline-success">Register</button>
                 <?php } ?>
+                
                 </div>
             </div>
         </div>

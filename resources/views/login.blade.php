@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // message for the user
     $status = false;
     $type = "alert-danger";

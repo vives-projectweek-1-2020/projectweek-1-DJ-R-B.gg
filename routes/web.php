@@ -29,6 +29,10 @@ Route::get('/file', function () {
     return view('fileUpload');
 });
 
+Route::post('/file', function () {
+    return view('fileUpload');
+});
+
 Route::post('/file_upload', function () {
     return view('fileUpload');
 });

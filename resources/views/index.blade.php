@@ -13,18 +13,18 @@
   
 	<div class="welcome">
         <header>Welkom, upload je taken hier.</header>
-        <button type="button" class="login" onclick="select('login')">Login hier</button> 
-        <button type="button" class="register" onclick="select('register')">Registreer hier</button>
+        <button type="button" class="btn btn-login" onclick="select('login')">Login hier</button> 
+        <button type="button" class="btn btn-register" onclick="select('register')">Registreer hier</button>
              
     </div>
     <div class="choices">
-        <button type="button" class="talen" onclick="select('talen')">Talen </button>
-        <button type="button" class="wiskunde" onclick="select('wiskunde')">Wiskunde </button>
-        <button type="button" class="geschiedenis" onclick="select('geschiedenis')">Geschiedenis</button>
+        <button type="button" class="btn btn-talen" onclick="select('talen')">Talen </button>
+        <button type="button" class="btn btn-wiskunde" onclick="select('wiskunde')">Wiskunde </button>
+        <button type="button" class="btn btn-geschiedenis" onclick="select('geschiedenis')">Geschiedenis</button>
     </div>
     
     <div class="upload">
-      <button  type="button" class="files" onclick="select('files')">Plaats je files hier om ze te uploaden.</button>
+      <button  type="button" class="btn btn-files" onclick="select('files')">Plaats je files hier om ze te uploaden.</button>
     </div>
   
 </body>

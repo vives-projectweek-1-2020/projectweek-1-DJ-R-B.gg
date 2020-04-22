@@ -2,11 +2,15 @@ body {
     background-color :#eeebe3;
     font-size: 50px;
     font-style: italic;
-} 
+}
 header {
     color:darkblue;
     text-align:center;
     text-decoration: underline; 
+}
+.main {
+    position: relative;
+    z-index: -1;
 }
 .welcome {
     position: relative;;

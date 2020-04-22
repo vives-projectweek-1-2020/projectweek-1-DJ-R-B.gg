@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::post('/', function () {
+    return view('index');
+});
+
 Route::get('/login', function () {
     return view('login');
 });
@@ -28,11 +32,11 @@ Route::post('/login', function () {
 Route::get('/file', function () {
     return view('fileUpload');
 });
-
+ 
 Route::post('/file', function () {
     return view('fileUpload');
 });
-
+ 
 Route::post('/file_upload', function () {
     return view('fileUpload');
 });

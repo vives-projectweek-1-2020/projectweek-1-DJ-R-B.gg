@@ -13,8 +13,8 @@
   
 	<div class="welcome">
         <header>Welkom, upload je taken hier.</header>
-        <button type="button" class="btn btn-login" onclick="select('login')">Login hier</button> 
-        <button type="button" class="btn btn-register" onclick="select('register')">Registreer hier</button>
+        <button type="button" class="btn btn-login btn-sm" onclick="select('login')">Login hier</button> 
+        <button type="button" class="btn btn-register btn-sm" onclick="select('register')">Registreer hier</button>
              
     </div>
     <div class="choices">
@@ -24,7 +24,7 @@
     </div>
     
     <div class="upload">
-      <button  type="button" class="btn btn-files" onclick="select('files')">Plaats je files hier om ze te uploaden.</button>
+      <button  type="button" class="btn btn-files btn-lg btn-block" onclick="select('files')">Plaats je files hier om ze te uploaden.</button>
     </div>
   
 </body>

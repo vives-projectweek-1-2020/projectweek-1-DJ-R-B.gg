@@ -8,10 +8,12 @@ header {
     text-align:center;
     text-decoration: underline;
     padding: 10px; 
+    font-size:xx-large;
 }
 .welcome {
     position: relative;;
     text-align: center;
+    padding-top: 30px;
        
 }
 .choices {

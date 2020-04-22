@@ -2,13 +2,17 @@ html {
     
     font-size: 25px;
     font-style: italic;
-} 
+}
 header {
     color:darkblue;
     text-align:center;
     text-decoration: underline;
     padding: 10px; 
     font-size:xx-large;
+}
+.main {
+    position: relative;
+    z-index: -1;
 }
 .welcome {
     position: relative;;
@@ -24,5 +28,18 @@ header {
 
 .upload{
     text-align: center;
+<<<<<<< HEAD
     padding-top: 80px;
+=======
+}
+div.files{
+    text-align: center ;
+    cursor: pointer;
+    bottom: 50px;
+    border-radius: 12px;
+    background-color: cornsilk;
+}
+.button{
+    background-color: cyan;
+>>>>>>> b6a9ecc8be80077475d583f51005a39469bca152
 }

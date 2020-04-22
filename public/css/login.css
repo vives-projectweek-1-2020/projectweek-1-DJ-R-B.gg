@@ -47,8 +47,20 @@ body {
     justify-content: space-between;
 }
 
+.popup #login {
+    background-color: #fefefe;
+    margin: 0px;
+    padding: 16px;
+}
+
+.popup #register {
+    background-color: #fefefe;
+    margin: 0px;
+    padding: 16px;
+}
+
 .popup .actions {
-    background-color: #eeeeee;
+    background-color: rgb(34, 34, 34);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     display: flex;
@@ -57,8 +69,12 @@ body {
     padding: 16px 24px;
 }
 
-button{
-    margin: 10px 10px;
+input[type="submit" i]{
+    margin: 0px 10px;
+}
+
+input[type="button" i]{
+    margin: 0px 10px;
 }
 
 .close {

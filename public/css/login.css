@@ -9,3 +9,6 @@ html {
 .inline {
     display: inline;
 }
+.card{
+    margin-bottom: 30px;
+}

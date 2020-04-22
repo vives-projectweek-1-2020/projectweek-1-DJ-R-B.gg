@@ -23,7 +23,6 @@
                     $fileDestination = public_path('upload/').$fileNameNew;
                     move_uploaded_file($fileTmpName, $fileDestination);
                     header("Location: index.php?uploadsuccess");
-                    $name = "jens";
                     $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);
                     DB::connection('mysql')->insert("INSERT INTO fileupload (user_id, path) VALUES (?, ?)", [ $userId[0]->id, $fileDestination ]);
                 }else{

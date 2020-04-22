@@ -26,3 +26,6 @@ Route::post('/login', function () {
     return view('login');
 });
 
+Route::get('/wiskunde', function () {
+    return view('wiskunde');
+});

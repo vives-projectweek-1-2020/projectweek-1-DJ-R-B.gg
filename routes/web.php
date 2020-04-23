@@ -24,6 +24,10 @@ Route::get('/talen', function () {
     return view('talen');
 });
 
+Route::get('/geschiedenis', function () {
+    return view('geschiedenis');
+});
+
 Route::get('/file', function () {
     return view('fileUpload');
 });

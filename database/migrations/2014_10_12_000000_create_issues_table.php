@@ -16,9 +16,12 @@ class CreateIssuesTable extends Migration
         Schema::create('issues', function (Blueprint $table) {
             $table->id()->unique();
             $table->foreignId('user_id');
+            $table->string('solver_id');
             $table->string('title');
             $table->set('category', ['wiskunde', 'taal', 'geschiedenis']);
             $table->timestamp('created_at')->useCurrent();
+            $table->boolean('is_solved');
+            $table->string('solver_id');
         });
     }
 

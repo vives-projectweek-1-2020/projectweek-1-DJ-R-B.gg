@@ -22,6 +22,11 @@
     {
       $result = DB::connection('mysql')->select("SELECT * FROM issues WHERE category = ? ORDER BY created_at DESC", [ $_GET["category"] ]);
     }
+    else if (isset($_GET["own"]))
+    {
+      $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);
+      $result = DB::connection('mysql')->select("SELECT * FROM issues WHERE user_id = ? ORDER BY created_at DESC", [ $userId[0]->id ]);
+    }
     else
     {
       $result = DB::connection('mysql')->select("SELECT * FROM issues ORDER BY created_at DESC");

@@ -9,6 +9,18 @@
 * PHP
 * Laravel
 
+## Problem
+
+Wij hebben vernomen dat tijdens deze Corona crisis de werkdruk op leerkrachten
+van het basisonderwijs serieus verhoogt was. Daarom willen we met dit project
+een manier voorleggen waarbij het mogelijk is dat studenten van het middelbaar onderwijs
+de taken verbeteren van leerlingen van het basisonderwijs.
+
+## Project
+
+Ons project is een platform genaamd Grademe dat ervoor zorgt dat leerlingen taken kunnen uploaden
+en dat leerlingen van het middelbaar deze taken kunnen gaan verbeteren.
+
 ## Project Members
 
 * [Dieter Dewachter](https://github.com/dieterdewachter)

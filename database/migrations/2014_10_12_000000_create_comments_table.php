@@ -13,7 +13,7 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Comments', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id()->unique();
             $table->foreignId('issue_id');
             $table->string('comment');
@@ -27,6 +27,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Comments');
+        Schema::dropIfExists('comments');
     }
 }

@@ -16,12 +16,15 @@ class CreateIssuesTable extends Migration
         Schema::create('issues', function (Blueprint $table) {
             $table->id()->unique();
             $table->foreignId('user_id');
+            $table->string('solver_id')->nullable();
             $table->string('title');
+            $table->string('comment')->nullable();
             $table->set('category', ['wiskunde', 'taal', 'geschiedenis']);
             $table->timestamp('created_at')->useCurrent();
+            $table->boolean('is_solved')->default(0);
         });
-    }
 
+    }
     /**
      * Reverse the migrations.
      *

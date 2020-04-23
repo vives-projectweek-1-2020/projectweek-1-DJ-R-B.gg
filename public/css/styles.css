@@ -1,6 +1,5 @@
 body { 
     background-color :#eeebe3;
-    font-size: 50px;
     font-style: italic;
 }
 header {
@@ -13,7 +12,7 @@ header {
     z-index: -1;
 }
 .welcome {
-    position: relative;;
+    position: relative;
     text-align: center;
     margin: 0 auto;    
 }
@@ -52,7 +51,8 @@ div.geschiedenis {
     text-align: center;
     width: 5px;
     cursor: pointer;
-    background-color: cornsilkgit 
+    background-color: cornsilk
+}
 .upload{
     text-align: center;
 }
@@ -65,4 +65,10 @@ div.files{
 }
 .button{
     background-color: cyan;
+}
+.card {
+    margin-bottom: 30px;
+}
+.popover-dismiss {
+    color: white !important;
 }

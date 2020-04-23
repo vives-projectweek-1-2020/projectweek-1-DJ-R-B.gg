@@ -31,6 +31,7 @@
                         move_uploaded_file($_FILES['file']['tmp_name'][$i],$fileDestination);
                         $issueId = DB::connection('mysql')->select("SELECT id FROM issues WHERE user_id  = ? ORDER BY created_at DESC ", [$userId[0]->id]);
                         DB::connection('mysql')->insert("INSERT INTO files (issue_id, name ) VALUES (?, ?)", [ $issueId[0]->id, $fileNameNew]);
+                        echo $_POST["category"];
                     }else{
                         echo "your file is to big";
                     }
@@ -79,9 +80,9 @@
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">subject</label>
                 <select  name="category" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                     <option selected>Choose...</option>
-                    <option value="1">wiskunde</option>
-                    <option value="2">taal</option>
-                    <option value="3">geschiedenis</option>
+                    <option value="wiskunde">wiskunde</option>
+                    <option value="taal">taal</option>
+                    <option value="geschiedenis">geschiedenis</option>
                 </select>
         </form>
 

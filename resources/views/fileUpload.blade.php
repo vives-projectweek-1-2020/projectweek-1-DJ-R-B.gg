@@ -2,8 +2,6 @@
 <!DOCTYPE html>
 <?php
     if(isset($_POST['submit'])){
-        $result = DB::connection('mysql')->select("SELECT password FROM accounts");
-        print_r($result[0]);
         $file = $_FILES['file'];
         $fileName = $_FILES['file']['name'];
         $fileTmpName = $_FILES['file']['tmp_name'];
@@ -24,9 +22,8 @@
                     $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);;
                     
                     DB::connection('mysql')->insert("INSERT INTO issues (user_id, title, category, comment) VALUES (?, ?, ?, ?)",
-                    [ $userId[0]->id , isset($_POST["title"]), isset($_POST["category"]), isset($_POST["comment"])]);
-
-                    $issueId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);
+                    [ $userId[0]->id , $_POST["title"], $_POST["category"], $_POST["comment"]]);
+                    $issueId = DB::connection('mysql')->select("SELECT id FROM issues WHERE user_id  = ? ORDER BY created_at DESC ", [$userId[0]->id]);
                     DB::connection('mysql')->insert("INSERT INTO files (issue_id, name ) VALUES (?, ?)", [ $issueId[0]->id, $fileNameNew]);
                 }else{
                     echo "your file is to big";
@@ -43,18 +40,51 @@
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Title of the document</title>
+        <link href="{{ asset('css/fileUpload.css') }}" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
-<body>
-@csrf
-<form action="file_upload" method="POST" enctype="multipart/form-data">@csrf
-<input type ="file" name="file">
-<button type="submit" name="submit" value="submit">UPLOAD FILE</button>
-<input type="text" name="title" id="title2" placeholder="title" minlength="3" required="true" />
-<input type="text" name="comment" id="comment2" placeholder="comment" minlength="0" required="false" />
-<input type="text" name="category" id="category2" placeholder="category" minlength="0" required="true" />
-</form>
+    <body>
+        @csrf
+        @include('header')
+        <form id=uploadForm action="file_upload" method="POST" enctype="multipart/form-data">@csrf
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button name="submit" class="input-group-text">Upload</button>
+                </div>
+                <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
+                    <label name="file" type="file" class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">title</label>
+                <input type="text" name="title" class="form-control" id="formGroupExampleInput" placeholder="title">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">description</label>
+                <textarea rows="5" cols="40" name="comment" type="text" class="form-control" id="formGroupExampleInput2" placeholder="description"></textarea>
+            </div>
+            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">subject</label>
+                <select  name="category" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                    <option selected>Choose...</option>
+                    <option value="1">wiskunde</option>
+                    <option value="2">taal</option>
+                    <option value="3">geschiedenis</option>
+                </select>
+        </form>
 
-</body>
+
+            <!-- <input type ="file" name="file">
+            <button type="submit" name="submit" value="submit">UPLOAD FILE</button>
+            <input type="text" name="title" id="title2" placeholder="title" minlength="3" required="true" />
+            <input type="text" name="comment" id="comment2" placeholder="comment" minlength="0" required="false" />
+            <input type="text" name="category" id="category2" placeholder="category" minlength="0" required="true" /> -->
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
 </html>

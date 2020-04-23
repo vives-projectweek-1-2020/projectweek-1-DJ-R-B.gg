@@ -16,8 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/wiskunde', function () {
-    return view('wiskunde');
+Route::get('/issue', function () {
+    return view('issue');
+});
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::post('/', function () {
+    return view('index');
 });
 
 Route::get('/file', function () {

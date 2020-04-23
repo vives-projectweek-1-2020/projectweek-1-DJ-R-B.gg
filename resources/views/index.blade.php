@@ -50,7 +50,7 @@
             <img src="{{ asset('upload/5ea04a9f4308f8.46219301.jpg') }}" class="card-text"/>
           </p>
           <?php if (isset($_SESSION["username"]) && $_SESSION["username"]) { ?>
-            <a href="#" class="btn btn-primary">Help this kid</a>
+            <a href="issue?id=<?= $result[$i]->id ?>" class="btn btn-primary">Help this kid</a>
           <?php } else { ?>
             <a tabindex="<?= $i ?>" class="btn btn-primary popover-dismiss" role="button" data-toggle="popover" data-trigger="focus" title="Please login" data-content="You have to login in order to view this issue">Help this kid</a>
           <?php } ?>

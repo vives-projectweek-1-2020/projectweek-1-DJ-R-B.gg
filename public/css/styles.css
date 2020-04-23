@@ -1,6 +1,5 @@
 body { 
     background-color :#eeebe3;
-    font-size: 50px;
     font-style: italic;
 }
 header {
@@ -66,4 +65,10 @@ div.files{
 }
 .button{
     background-color: cyan;
+}
+.card {
+    margin-bottom: 30px;
+}
+.popover-dismiss {
+    color: white !important;
 }

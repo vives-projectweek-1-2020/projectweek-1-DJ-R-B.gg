@@ -1,7 +1,3 @@
-html {
-    font-family: sans-serif;
-    background-color: #fefefe;
-}
 #status {
     margin-bottom: 0;
     border-radius: 0;
@@ -9,6 +5,19 @@ html {
 .inline {
     display: inline;
 }
-.card{
+.carousel {
     margin-bottom: 30px;
+}
+.carousel-inner {
+    overflow: visible;
+}
+.carousel-indicators {
+    z-index: 2;
+}
+.dropdown-item:hover {
+    background-color: #007bff;
+    color: white;
+}
+.dropdown-menu.show {
+    z-index: 3;
 }

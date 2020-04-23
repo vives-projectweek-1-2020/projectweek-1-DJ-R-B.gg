@@ -77,12 +77,6 @@
 
 <!-- CAROUSEL GEDEELTE -->
 <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel" data-slide-to="1"></li>
-        <li data-target="#carousel" data-slide-to="2"></li>
-    </ol>
-
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
             <div class="view">
@@ -92,14 +86,33 @@
             <div class="carousel-caption">
                 <h3 class="h3-responsive">Grademe</h3>
                 <input type="button" class="btn btn btn-secondary" value="Home" onclick="window.location.href='/';" />
-                <button type="button" class="btn btn-secondary">Talen </button>
-                <button type="button" class="btn btn-secondary">Wiskunde </button>
-                <button type="button" class="btn btn-secondary">Geschiedenis</button>
+                <div class="dropdown inline">
+                    <button class="btn btn-secondary dropdown-toggle" id="categoryDropDown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="categoryDropDown">
+                    <?php
+                        $categories = DB::connection('mysql')->select("SELECT DISTINCT category FROM issues");
+                        for ($i = 0; $i < count($categories); $i++)
+                        {
+                            $category = $categories[$i]->category;
+                    ?>
+                        <a class="dropdown-item" href="?category=<?= $category ?>"><?= $category ?></a>
+                    <?php
+                        }
+                    ?>
+                    </div>
+                </div>
                 <?php if (isset($_SESSION["username"]) && $_SESSION["username"]) { ?>
+                    <form method="POST" action="/file" class="inline">
+                        @csrf
+                        <input type="submit" value="Upload Files" class="btn btn-success" />
+                    </form>
                     <form method="POST" action="/" class="inline">
                         @csrf
                         <input type="hidden" name="logout" value="true" />
                         <input type="submit" value="Logout" class="btn btn-danger" />
+
                         <p>Welcome <?= $_SESSION["username"] ?></p>
                     </form>
                 <?php } else { ?>

@@ -20,6 +20,10 @@ Route::get('/issue', function () {
     return view('issue');
 });
 
+Route::post('/issue', function () {
+    return view('issue');
+});
+
 Route::get('/', function () {
     return view('index');
 });

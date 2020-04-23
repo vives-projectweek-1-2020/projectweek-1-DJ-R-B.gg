@@ -31,7 +31,8 @@
     { 
       $id = $result[$i]->id;
       $user_id = $result[$i]->user_id;
-      $username = DB::connection('mysql')->select("SELECT username FROM accounts WHERE id = $user_id"); ?>
+      $username = DB::connection('mysql')->select("SELECT username FROM accounts WHERE id = $user_id");
+      $images = DB::connection('mysql')->select("SELECT name FROM files WHERE issue_id = ?", [$result[$i]->id]) ?>
       <div class="card text-center">
         <div class="card-header">
           <?= $username[0]->username?>
@@ -47,7 +48,7 @@
             <?= $result[$i]->comment ?>
           </p>
           <p>
-            <img src="{{ asset('upload/5ea04a9f4308f8.46219301.jpg') }}" class="card-text"/>
+            <img src="{{ asset('upload/') }}/<?= $images[$i]->name ?>" class="card-text"/>
           </p>
           <?php if (isset($_SESSION["username"]) && $_SESSION["username"]) { ?>
             <a href="issue?id=<?= $result[$i]->id ?>" class="btn btn-primary">Help this kid</a>

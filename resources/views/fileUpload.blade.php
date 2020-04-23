@@ -2,41 +2,48 @@
 <!DOCTYPE html>
 <?php
     if(isset($_POST['submit'])){
-        $file = $_FILES['file'];
-        $fileName = $_FILES['file']['name'];
-        $fileTmpName = $_FILES['file']['tmp_name'];
-        $fileSize = $_FILES['file']['size'];
-        $fileError = $_FILES['file']['error'];
-        $fileType = $_FILES['file']['type'];
-        $fileExt = explode('.',$fileName);
-        $fileActualExt = strtolower(end($fileExt));
-        $allowed = array('jpg','jpeg','png');
-        if(in_array($fileActualExt,$allowed ))
-        {
-            if($fileError === 0){
-                if($fileSize < 500000){
-                    $fileNameNew = uniqid('', true).".".$fileActualExt; 
-                    $fileDestination = public_path('upload/').$fileNameNew;
-                    move_uploaded_file($fileTmpName, $fileDestination);
-                    header("Location: index.php?uploadsuccess");
-                    $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);;
-                    
-                    DB::connection('mysql')->insert("INSERT INTO issues (user_id, title, category, comment) VALUES (?, ?, ?, ?)",
-                    [ $userId[0]->id , $_POST["title"], $_POST["category"], $_POST["comment"]]);
-                    $issueId = DB::connection('mysql')->select("SELECT id FROM issues WHERE user_id  = ? ORDER BY created_at DESC ", [$userId[0]->id]);
-                    DB::connection('mysql')->insert("INSERT INTO files (issue_id, name ) VALUES (?, ?)", [ $issueId[0]->id, $fileNameNew]);
+
+        // Count total files
+
+        $countfiles = count($_FILES['file']['name']);
+
+        // Looping all files
+        $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);;                  
+        DB::connection('mysql')->insert("INSERT INTO issues (user_id, title, category, comment) VALUES (?, ?, ?, ?)",
+        [ $userId[0]->id , $_POST["title"], $_POST["category"], $_POST["comment"]]);
+        for($i=0;$i<$countfiles;$i++){
+            $fileName = $_FILES['file']['name'][$i];
+            $fileSize = $_FILES['file']['size'][$i];
+            $allowed = array('jpg','jpeg','png');
+            $fileError = $_FILES['file']['error'][$i];
+            $fileType = $_FILES['file']['type'][$i];
+            $fileExt = explode('.',$fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            if(in_array($fileActualExt,$allowed ))
+            {
+                if($fileError === 0){
+                    if($fileSize < 500000){
+                        header("Location: index.php?uploadsuccess");
+                        $fileExt = explode('.',$fileName);
+                        $fileActualExt = strtolower(end($fileExt));
+                        $fileNameNew = uniqid('', true).".".$fileActualExt; 
+                        $fileDestination = public_path('upload/').$fileNameNew;
+                        move_uploaded_file($_FILES['file']['tmp_name'][$i],$fileDestination);
+                        $issueId = DB::connection('mysql')->select("SELECT id FROM issues WHERE user_id  = ? ORDER BY created_at DESC ", [$userId[0]->id]);
+                        DB::connection('mysql')->insert("INSERT INTO files (issue_id, name ) VALUES (?, ?)", [ $issueId[0]->id, $fileNameNew]);
+                    }else{
+                        echo "your file is to big";
+                    }
                 }else{
-                    echo "your file is to big";
+                    echo "there was an error procesing your file";
                 }
-            }else{
-                echo "there was an error procesing your file";
+            }
+            else
+            {
+                echo "only images are allowed";
             }
         }
-        else
-        {
-            echo "only images are allowed";
-        }
-    } 
+     } 
 ?>
 <html>
     <head>
@@ -57,7 +64,7 @@
                     <button name="submit" class="input-group-text">Upload</button>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="file" class="custom-file-input" id="inputGroupFile01">
+                    <input type="file" name="file[]" class="custom-file-input" id="inputGroupFile01" multiple>
                     <label name="file" type="file" class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
             </div>

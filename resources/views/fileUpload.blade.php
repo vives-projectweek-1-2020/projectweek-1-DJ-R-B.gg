@@ -42,9 +42,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Title of the document</title>
-        <link href="{{ asset('css/fileUpload.css') }}" type="text/css" rel="stylesheet" />
+        <title>Grademe</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+        <link href="{{ asset('css/fileUpload.css') }}" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     </head>
     <body>
         @csrf

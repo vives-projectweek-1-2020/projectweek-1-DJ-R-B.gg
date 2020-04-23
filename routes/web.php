@@ -20,6 +20,10 @@ Route::get('/wiskunde', function () {
     return view('wiskunde');
 });
 
+Route::get('/talen', function () {
+    return view('talen');
+});
+
 Route::get('/file', function () {
     return view('fileUpload');
 });

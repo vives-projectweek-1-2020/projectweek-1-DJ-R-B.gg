@@ -1,11 +1,10 @@
-.upload{
+.container{
     font-family: sans-serif;
-    background-color: #fefefe;
-    padding:15px;
+    padding:30px;
 }
  .pb-cmnt-container {
         font-family: Lato;
-        margin-top: 100px;
+        margin-top: 50px;
         
 }
  .pb-cmnt-textarea {
@@ -16,5 +15,5 @@
         border: 1px solid #F2F2F2;
 }
 .img-fluid{
-    padding-top: 100px;
+    padding-top: 50px;
 }

@@ -12,7 +12,12 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/wiskunde.css') }}">
 </head>
-<body>     
+<body>
+<?php if (!(isset($_SESSION["username"]) && $_SESSION["username"])) {
+  http_response_code(403);
+  die('Forbidden');
+}
+?>
 @include('header')
 
 <?php

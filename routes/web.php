@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/wiskunde', function () {
     return view('wiskunde');
+});
 
 Route::get('/file', function () {
     return view('fileUpload');
@@ -31,3 +32,5 @@ Route::post('/file_upload', function () {
     return view('fileUpload');
 
 });
+
+?>

@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>     
+@include('header')
             <div class="upload">
-            <input type="button" class="btn btn-outline-success" class="sticky-top" value="Upload hier je wiskunde taak." />      
+            <input type="button" class="btn btn-primary" class="sticky-top" value="Upload hier je wiskunde taak." />      
         </div>
 
     <div class="container">
@@ -24,18 +25,12 @@
             <div class="card-header">Wiskunde</div>
                 <div class="card-body">  
                 <p class="card-text">De verbetering</p>
+                <h1 class="text-center"> Hier staat de oplossing van de taak </h1>
+                <img src="..." class="img-fluid" alt="Responsive image">
                 </div>
             </div>
         </div>
     </div>
-        <div class="container">
-        <div class="card text-center">
-            <div class="card-header"> Wiskunde </div>
-                <div class="card-body">                
-                <p class="card-text">De verbetering</p>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 </body>

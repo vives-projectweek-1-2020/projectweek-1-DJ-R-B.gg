@@ -26,9 +26,13 @@
                                 <div class="form-group">
                                  
                                      <textarea class="form-control" rows="5" id="comment">Plaats je commentaar hier</textarea>
+                                     <div class="share-button">
                                      <button class="btn btn-primary pull-right" type="button" >Share</button>
-                                </div>
-                                <img src="..." class="img-fluid" alt="Responsive image">
+                                    </div>
+                            </div>
+                                
+                                    <img src="..." class="img-fluid" alt="Responsive image">
+                                
                 </div>
         </div>  
                     

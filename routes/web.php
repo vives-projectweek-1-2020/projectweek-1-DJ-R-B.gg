@@ -28,6 +28,10 @@ Route::get('/geschiedenis', function () {
     return view('geschiedenis');
 });
 
+Route::get('/oefeningen', function () {
+    return view('oefeningen');
+});
+
 Route::get('/file', function () {
     return view('fileUpload');
 });

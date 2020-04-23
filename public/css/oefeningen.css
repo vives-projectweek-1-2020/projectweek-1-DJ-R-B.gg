@@ -1,0 +1,25 @@
+.container{
+    font-family: sans-serif;
+    padding:30px;
+}
+ .pb-cmnt-container {
+        font-family: Lato;
+        margin-top: 50px;
+        
+}
+ .pb-cmnt-textarea {
+        resize: none;
+        padding: 20px;
+        height: 130px;
+        width: 100%;
+        border: 1px solid #F2F2F2;
+}
+.img-fluid{
+    padding-top: 50px;
+}
+.share-button{
+    padding-top: 10px;
+}
+.h1{
+    padding: 50px;
+}

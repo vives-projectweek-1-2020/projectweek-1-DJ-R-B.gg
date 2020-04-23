@@ -18,6 +18,7 @@ class CreateIssuesTable extends Migration
             $table->foreignId('user_id');
             $table->string('solver_id');
             $table->string('title');
+            $table->string('comment');
             $table->set('category', ['wiskunde', 'taal', 'geschiedenis']);
             $table->timestamp('created_at')->useCurrent();
             $table->boolean('is_solved');

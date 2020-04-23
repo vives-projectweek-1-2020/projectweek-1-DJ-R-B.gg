@@ -26,16 +26,27 @@
                 <div class="card-body">  
                 <p class="card-text">De verbetering</p>
                 <h1 class="text-center"> Hier staat de oplossing van de taak </h1>
-                <img src="..." class="img-fluid" alt="Responsive image">
+                <div class="container pb-cmnt-container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3"class="card text-center">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                   
+                    <textarea placeholder="Write your comment here!" class="pb-cmnt-textarea" class="text-center"></textarea>
+                    <div class="float-left">
+                    <button class="btn btn-primary pull-right" type="button" >Share</button>
+</div>  
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
+                <img src="..." class="img-fluid" alt="Responsive image">
+                </div>
+   
 </div>
 </body>
 </html>
-
 </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

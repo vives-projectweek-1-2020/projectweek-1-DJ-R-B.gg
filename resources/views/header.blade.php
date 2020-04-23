@@ -86,6 +86,7 @@
             <div class="carousel-caption">
                 <h3 class="h3-responsive">Grademe</h3>
                 <input type="button" class="btn btn btn-secondary" value="Home" onclick="window.location.href='/';" />
+                <input type="button" class="btn btn btn-secondary" value="View own issues" onclick="window.location.href='?own';" />
                 <div class="dropdown inline">
                     <button class="btn btn-secondary dropdown-toggle" id="categoryDropDown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Categories
@@ -113,7 +114,7 @@
                         <input type="hidden" name="logout" value="true" />
                         <input type="submit" value="Logout" class="btn btn-danger" />
 
-                        <p>Welcome <?= $_SESSION["username"] ?></p>
+                        <p id="welcome">Welcome <?= $_SESSION["username"] ?></p>
                     </form>
                 <?php } else { ?>
                     <button data-toggle="modal" data-target="#logincontainer" class="btn btn-primary">Login</button>

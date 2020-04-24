@@ -69,6 +69,12 @@ div.files{
 .card {
     margin-bottom: 30px;
 }
+.card-body {
+    overflow: hidden;
+}
+#carousel2 img {
+    margin: auto;
+}
 .popover-dismiss {
     color: white !important;
 }

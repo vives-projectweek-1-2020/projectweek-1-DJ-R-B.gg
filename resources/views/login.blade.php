@@ -12,11 +12,11 @@
 
         if (isset($_POST["password"])) // login
         {
-            //$query = $db->prepare("SELECT password FROM accounts WHERE username = ?");
+            //$query = $db->prepare("SELECT password FROM users WHERE username = ?");
             //$query->bind_param("s", $_POST['username']);
             //$result = $query->execute();
             
-            $result = DB::connection('mysql')->select("SELECT password FROM accounts WHERE username = ?", [ $_POST["username"] ]);
+            $result = DB::connection('mysql')->select("SELECT password FROM users WHERE username = ?", [ $_POST["username"] ]);
 
             if (count($result) > 0)
             {
@@ -49,11 +49,11 @@
                 $password = password_hash($_POST["password1"], PASSWORD_DEFAULT);
                 $rank = 0;
 
-                //$query = $db->prepare("INSERT INTO accounts (username, password, rank) VALUES (?, ?, ?)");
+                //$query = $db->prepare("INSERT INTO users (username, password, rank) VALUES (?, ?, ?)");
                 //$query->bind_param("ssi", $_POST['username'], $password, $rank);
                 //$query->execute();
 
-                DB::connection('mysql')->insert("INSERT INTO accounts (username, password, rank) VALUES (?, ?, ?)", [ $_POST["username"], $password, $rank ]);
+                DB::connection('mysql')->insert("INSERT INTO users (username, password, rank) VALUES (?, ?, ?)", [ $_POST["username"], $password, $rank ]);
 
                 $status = "Successfully registered '$username'";
                 $type = "alert-success";

@@ -17,72 +17,35 @@ $phpFileUploadErrors = array(
 
 if (isset($_FILES['userfile']))
 {
+    $userId = DB::connection('mysql')->select("SELECT id FROM users WHERE username = ?", [$_SESSION["username"]]);
+    $issueId = DB::connection('mysql')->table("issues")->insertGetId([
+        "user_id" => $userId[0]->id,
+        "title" => $_POST["title"],
+        "category_id" => $_POST["category"],
+        "comment" => $_POST["comment"]
+    ]);
     for ($i = 0; $i < count($_FILES["userfile"]["name"]); $i++)
     {
         if ($_FILES["userfile"]["error"][$i])
         {
-            //fixen
-            ?> <HTML> <div class="alert alert-danger"> </HTML>  <?php 
-            echo $phpFileUploadErrors[$_FILES["userfile"]['error'][$i]];
-            ?> <HTML></div></HTML>
+            ?> <HTML>
+            <div class="alert alert-danger">
+            </HTML> <?= $phpFileUploadErrors[$_FILES["userfile"]['error'][$i]] ?> <HTML>
+            </div>
+            </HTML>
             <?php
         }
         else
         {
-            $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [$_SESSION["username"]]);
-            DB::connection('mysql')->insert("INSERT INTO issues (user_id, title, category, comment) VALUES (?, ?, ?, ?)",
-                                            [ $userId[0]->id, $_POST["title"], $_POST["category"], $_POST["comment"] ]);
-            $issueId = DB::connection('mysql')::table("issues")->insertGetId([ "user_id" => $userId[0]->id ]);
             $pathInfo = pathinfo($_FILES["userfile"]["name"][$i], PATHINFO_EXTENSION);
-            $fileName= "Issue_" . $issueId . "_File_" . $i . "." . $pathInfo["extension"];
+            $fileName = "Issue_" . $issueId . "_File_" . $i . "." . $pathInfo;
             $fileDestination = public_path('upload/') . $fileName;
             move_uploaded_file($_FILES['userfile']['tmp_name'][$i], $fileDestination);
+
+            DB::connection('mysql')->insert("INSERT INTO files (issue_id, name) VALUES (?, ?)", [ $issueId, $fileName ]);
         }
     }
-}   
-
-
-//     // Count total files
-//     $countfiles = count($_FILES['file']['name']);
-//     // if($countfiles != 0){
-//     echo "<script>console.log('Will it work');</script>";
-//     // Looping all files
-//     $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [$_SESSION["username"]]);;
-//     DB::connection('mysql')->insert(
-//         "INSERT INTO issues (user_id, title, category, comment) VALUES (?, ?, ?, ?)",
-//         [$userId[0]->id, $_POST["title"], $_POST["category"], $_POST["comment"]]
-//     );
-//     for ($i = 0; $i < $countfiles; $i++) {
-//         $fileName = $_FILES['file']['name'][$i];
-//         $fileSize = $_FILES['file']['size'][$i];
-//         $allowed = array('jpg', 'jpeg', 'png');
-//         $fileError = $_FILES['file']['error'][$i];
-//         $fileType = $_FILES['file']['type'][$i];
-//         $fileExt = explode('.', $fileName);
-//         $fileActualExt = strtolower(end($fileExt));
-//         if (in_array($fileActualExt, $allowed)) {
-//             if ($fileError === 0) {
-//                 if ($fileSize < 500000) {
-//                     $fileExt = explode('.', $fileName);
-//                     $fileActualExt = strtolower(end($fileExt));
-//                     $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-//                     $fileDestination = public_path('upload/') . $fileNameNew;
-//                     move_uploaded_file($_FILES['file']['tmp_name'][$i], $fileDestination);
-//                     $issueId = DB::connection('mysql')->select("SELECT id FROM issues WHERE user_id  = ? ORDER BY created_at DESC ", [$userId[0]->id]);
-//                     DB::connection('mysql')->insert("INSERT INTO files (issue_id, name ) VALUES (?, ?)", [$issueId[0]->id, $fileNameNew]);
-//                     header("Location: /");
-//                     die();
-//                 } else {
-//                     echo "your file is to big";
-//                 }
-//             } else {
-//                 echo "there was an error procesing your file";
-//             }
-//         } else {
-//             echo "only images are allowed";
-//         }
-//     }
-// }
+}
 
 ?>
 <html>
@@ -100,19 +63,37 @@ if (isset($_FILES['userfile']))
 <body>
     @include('header')
     <div class="container">
-        <form method="POST" enctype="multipart/form-data" action="">
+        <form class="md-form" method="POST" enctype="multipart/form-data" action="">
             @csrf
-            <input type="file" name="userfile[]" value="" multiple="" />
-            <input type="submit" name="submit" value="Upload" />
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Descriptive title">
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control" id="category" name="category">
+                    <?php
+                        $categories = DB::connection('mysql')->select("SELECT id, name FROM categories");
+                        for ($i = 0; $i < count($categories); $i++)
+                        {
+                    ?>
+                        <option value="<?= $categories[$i]->id ?>"><?= $categories[$i]->name ?></option>
+                    <?php
+                        }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Long and detailed explanation of the issue"></textarea>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="userfile[]" value="" multiple>
+                <label class="custom-file-label" for="customFile">Choose files</label>
+            </div><br /><br />
+            <input type="submit" name="submit" value="Upload" class="btn btn-outline-dark btn-block" />
         </form>
     </div>
-
-
-    <!-- <input type ="file" name="file">
-            <button type="submit" name="submit" value="submit">UPLOAD FILE</button>
-            <input type="text" name="title" id="title2" placeholder="title" minlength="3" required="true" />
-            <input type="text" name="comment" id="comment2" placeholder="comment" minlength="0" required="false" />
-            <input type="text" name="category" id="category2" placeholder="category" minlength="0" required="true" /> -->
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -120,30 +101,3 @@ if (isset($_FILES['userfile']))
 </body>
 
 </html>
-
-
-
-<!-- <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button type="submit" name="submit" class="input-group-text">Upload</button>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput">title</label>
-                <input type="text" name="title" required="true" class="form-control" id="formGroupExampleInput" placeholder="title">
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">description</label>
-                <textarea rows="5" cols="40" name="comment" type="text" class="form-control" id="formGroupExampleInput2" placeholder="description"></textarea>
-            </div>
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">subject</label>
-            <select name="category" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                <option selected>Choose...</option>
-                <option value="wiskunde">wiskunde</option>
-                <option value="taal">taal</option>
-                <option value="geschiedenis">geschiedenis</option>
-            </select> -->

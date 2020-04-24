@@ -20,23 +20,23 @@
     $result = false;
     if (isset($_GET["category"]))
     {
-      $result = DB::connection('mysql')->select("SELECT * FROM issues WHERE category = ? ORDER BY created_at DESC", [ $_GET["category"] ]);
+      $result = DB::connection('mysql')->select("SELECT issues.*, users.username, categories.name FROM issues JOIN users ON issues.user_id = users.id JOIN categories ON issues.category_id = categories.id WHERE category_id = ? ORDER BY created_at DESC", [ $_GET["category"] ]);
     }
     else if (isset($_GET["own"]))
     {
-      $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);
-      $result = DB::connection('mysql')->select("SELECT * FROM issues WHERE user_id = ? ORDER BY created_at DESC", [ $userId[0]->id ]);
+      $userId = DB::connection('mysql')->select("SELECT id FROM users WHERE username = ?", [ $_SESSION["username"] ]);
+      $result = DB::connection('mysql')->select("SELECT issues.*, users.username, categories.name FROM issues JOIN users ON issues.user_id = users.id JOIN categories ON issues.category_id = categories.id ORDER BY created_at DESC", [ $userId[0]->id ]);
     }
     else
     {
-      $result = DB::connection('mysql')->select("SELECT * FROM issues ORDER BY created_at DESC");
+      $result = DB::connection('mysql')->select("SELECT issues.*, users.username, categories.name FROM issues JOIN users ON issues.user_id = users.id JOIN categories ON issues.category_id = categories.id ORDER BY created_at DESC");
     }
 
     for ($i = 0; $i < count($result); $i++)
     { 
       $id = $result[$i]->id;
       $user_id = $result[$i]->user_id;
-      $username = DB::connection('mysql')->select("SELECT username FROM accounts WHERE id = $user_id");
+      $username = DB::connection('mysql')->select("SELECT username FROM users WHERE id = $user_id");
       $images = DB::connection('mysql')->select("SELECT name FROM files WHERE issue_id = ?", [$result[$i]->id]) ?>
       <div class="card text-center">
         <div class="card-header">
@@ -44,7 +44,7 @@
         </div>
         <div class="card-body">
           <h4 class="card-title">
-            <?= $result[$i]->category ?>
+            <?= $result[$i]->name ?>
           </h4>
           <h5 class="card-title">
             <?= $result[$i]->title ?>
@@ -53,7 +53,7 @@
             <?= $result[$i]->comment ?>
           </p>
           <p>
-            <img src="{{ asset('upload/') }}/<?= $images[0]->name ?>" class="card-text"/>
+            <img src="{{ asset('upload/') }}/<?= $images[0]->name ?>" class="card-text issue_img"/>
           </p>
           <?php if (isset($_SESSION["username"]) && $_SESSION["username"]) { ?>
             <a href="issue?id=<?= $result[$i]->id ?>" class="btn btn-primary">Help this kid</a>

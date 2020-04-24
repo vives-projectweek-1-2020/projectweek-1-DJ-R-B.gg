@@ -72,6 +72,9 @@ div.files{
 .card-body {
     overflow: hidden;
 }
+img.issue_img {
+    height: 500px;
+}
 #carousel2 img {
     margin: auto;
 }

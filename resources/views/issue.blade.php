@@ -21,12 +21,13 @@
 @include('header')
 
 <?php
-    $result = DB::connection('mysql')->select("SELECT * FROM issues WHERE id = ? ", [ $_GET['id'] ]);
+    $result = DB::connection('mysql')->select("SELECT issues.*, categories.name FROM issues JOIN categories ON issues.category_id = categories.id WHERE issues.id = ? ", [ $_GET['id'] ]);
     $user_id = $result[0]->user_id;
-    $username = DB::connection('mysql')->select("SELECT username FROM accounts WHERE id = $user_id");
+    $username = DB::connection('mysql')->select("SELECT username FROM users WHERE id = $user_id");
 
-    if(isset($_POST["comment"])){
-      $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);
+    if (isset($_POST["comment"]))
+    {
+      $userId = DB::connection('mysql')->select("SELECT id FROM users WHERE username = ?", [ $_SESSION["username"] ]);
       DB::connection('mysql')->insert("INSERT INTO comments (issue_id, user_id, comment) VALUES (?, ?, ?)", [ $_GET['id'], $userId[0]->id, $_POST["comment"] ]);
     }
 ?>
@@ -38,7 +39,7 @@
      </div>
      <div class="card-body">
        <h4 class="card-title">
-         <?= $result[0]->category ?>
+         <?= $result[0]->name ?>
        </h4>
        <h5 class="card-title">
          <?= $result[0]->title ?>
@@ -58,13 +59,13 @@
                   if($i == 0){
                 ?>
                 <div class="carousel-item active">
-                    <img class="d-block h-50" src="{{ asset('upload/') }}/<?= $images[$i]->name ?>" alt="Nice image">
+                    <img class="d-block  issue_img" src="{{ asset('upload/') }}/<?= $images[$i]->name ?>" alt="Nice image">
                   </div>
                 <?php 
                   } else {
                 ?>
                   <div class="carousel-item">
-                      <img class="d-block h-50" src="{{ asset('upload/') }}/<?= $images[$i]->name ?>" alt="Nice image">
+                      <img class="d-block issue_img" src="{{ asset('upload/') }}/<?= $images[$i]->name ?>" alt="Nice image">
                   </div>
                 <?php }} ?>
             </div>
@@ -94,7 +95,7 @@
     <?php 
       $comments = DB::connection('mysql')->select("SELECT * FROM comments WHERE issue_id = ? ORDER BY created_at DESC", [ $_GET["id"] ]);
       for($i = 0; $i < count($comments); $i++){
-      $username = DB::connection('mysql')->select("SELECT username FROM accounts WHERE id=?", [$comments[$i]->user_id]);
+      $username = DB::connection('mysql')->select("SELECT username FROM users WHERE id=?", [$comments[$i]->user_id]);
     ?>
     <div class="card">
       <div class="card-header">

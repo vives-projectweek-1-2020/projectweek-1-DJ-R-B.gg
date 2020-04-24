@@ -25,7 +25,7 @@
     else if (isset($_GET["own"]))
     {
       $userId = DB::connection('mysql')->select("SELECT id FROM users WHERE username = ?", [ $_SESSION["username"] ]);
-      $result = DB::connection('mysql')->select("SELECT issues.*, users.username, categories.name FROM issues JOIN users ON issues.user_id = users.id JOIN categories ON issues.category_id = categories.id ORDER BY created_at DESC", [ $userId[0]->id ]);
+      $result = DB::connection('mysql')->select("SELECT issues.*, users.username, categories.name FROM issues JOIN users ON issues.user_id = users.id JOIN categories ON issues.category_id = categories.id WHERE user_id = ? ORDER BY created_at DESC", [ $userId[0]->id ]);
     }
     else
     {

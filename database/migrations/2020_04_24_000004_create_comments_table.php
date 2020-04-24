@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIssuesTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateIssuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('issues', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id()->unique();
+            $table->foreignId('issue_id');
             $table->foreignId('user_id');
-            $table->foreignId('solver_id')->nullable();
-            $table->text('title');
-            $table->text('comment')->nullable();
-            $table->set('category', ['wiskunde', 'taal', 'geschiedenis']);
+            $table->string('comment');
             $table->timestamp('created_at')->useCurrent();
-            $table->boolean('is_solved')->default(0);
-        });
 
+            $table->foreign('issue_id')->references('id')->on('issues');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
     /**
      * Reverse the migrations.
@@ -32,6 +31,6 @@ class CreateIssuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('issues');
+        Schema::dropIfExists('comments');
     }
 }

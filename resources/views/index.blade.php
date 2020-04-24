@@ -53,7 +53,7 @@
             <?= $result[$i]->comment ?>
           </p>
           <p>
-            <img src="{{ asset('upload/') }}/<?= $images[$i]->name ?>" class="card-text"/>
+            <img src="{{ asset('upload/') }}/<?= $images[0]->name ?>" class="card-text"/>
           </p>
           <?php if (isset($_SESSION["username"]) && $_SESSION["username"]) { ?>
             <a href="issue?id=<?= $result[$i]->id ?>" class="btn btn-primary">Help this kid</a>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountsTable extends Migration
+class CreateFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id()->unique();
-            $table->text('username');
-            $table->text('password');
-            $table->integer('rank');
+            $table->foreignId('issue_id');
+            $table->string('name');
+
+            $table->foreign('issue_id')->references('id')->on('issues');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('files');
     }
 }

@@ -32,3 +32,26 @@ en dat leerlingen van het middelbaar deze taken kunnen gaan verbeteren.
 
 * [Piet Cordemans](https://github.com/pcordemans)
 * [Sille van Landschoot](https://github.com/sillevl)
+
+# Setup Guide
+
+## System requirements
+
+* [Composer](https://getcomposer.org/download/)
+* [xampp](https://www.apachefriends.org/download.html)
+
+## How to run.
+
+Firstly you will have to set up your database. The database will have to be set up through phpmyadmin.
+When you have created an empty database you will have to name the database `grademe`.
+After having done that you need to run the below commands to fully install the project.
+
+### Commands needed to fully install project.
+
+* `composer i`
+* `php artisan migrate`
+
+After having run the above commands the project should be fully installed.
+In the `public/upload` folder there are several test images. these images can be used when wanting to put data in the system.
+
+After having executed the steps listed above, you should be good to go.

@@ -3,7 +3,7 @@
     // message for the user
     $status = false;
     $type = "alert-danger";
-
+    
     if (isset($_POST["username"]))
     {
         // database connection

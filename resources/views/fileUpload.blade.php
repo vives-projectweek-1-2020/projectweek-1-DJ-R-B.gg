@@ -1,11 +1,12 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <?php
+use Illuminate\Support\Facades\Route;
     if(isset($_POST['submit'])){
 
         // Count total files
-
         $countfiles = count($_FILES['file']['name']);
+       // if($countfiles != 0){
 
         // Looping all files
         $userId = DB::connection('mysql')->select("SELECT id FROM accounts WHERE username = ?", [ $_SESSION["username"] ]);;                  
@@ -23,7 +24,6 @@
             {
                 if($fileError === 0){
                     if($fileSize < 500000){
-                        header("Location: index.php?uploadsuccess");
                         $fileExt = explode('.',$fileName);
                         $fileActualExt = strtolower(end($fileExt));
                         $fileNameNew = uniqid('', true).".".$fileActualExt; 
@@ -31,7 +31,7 @@
                         move_uploaded_file($_FILES['file']['tmp_name'][$i],$fileDestination);
                         $issueId = DB::connection('mysql')->select("SELECT id FROM issues WHERE user_id  = ? ORDER BY created_at DESC ", [$userId[0]->id]);
                         DB::connection('mysql')->insert("INSERT INTO files (issue_id, name ) VALUES (?, ?)", [ $issueId[0]->id, $fileNameNew]);
-                        echo $_POST["category"];
+                        header("Location: /");die();
                     }else{
                         echo "your file is to big";
                     }
@@ -44,7 +44,8 @@
                 echo "only images are allowed";
             }
         }
-     } 
+     }
+    
 ?>
 <html>
     <head>
@@ -59,19 +60,19 @@
     <body>
         @csrf
         @include('header')
-        <form id=uploadForm action="file_upload" method="POST" enctype="multipart/form-data">@csrf
+        <form id=uploadForm  method="POST" enctype="multipart/form-data">@csrf
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <button name="submit" class="input-group-text">Upload</button>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="file[]" class="custom-file-input" id="inputGroupFile01" multiple>
+                    <input type="file" name="file[]" required="true" class="custom-file-input" id="inputGroupFile01" multiple>
                     <label name="file" type="file" class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput">title</label>
-                <input type="text" name="title" class="form-control" id="formGroupExampleInput" placeholder="title">
+                <input type="text" name="title" required="true" class="form-control" id="formGroupExampleInput" placeholder="title">
             </div>
             <div class="form-group">
                 <label for="formGroupExampleInput2">description</label>
@@ -84,7 +85,7 @@
                     <option value="taal">taal</option>
                     <option value="geschiedenis">geschiedenis</option>
                 </select>
-        </form>
+        </form  >
 
 
             <!-- <input type ="file" name="file">
